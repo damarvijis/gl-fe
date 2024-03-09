@@ -17,6 +17,7 @@ jobs:
           script: |
             cd /var/www/app-gl-fe-dev
             git pull origin master
+            npm cache clean --force
             npm ci
             npm run build
             pm2 restart app-gl-fe-dev || pm2 start npm --name app-gl-fe-dev -- start -- -p -- 10001
