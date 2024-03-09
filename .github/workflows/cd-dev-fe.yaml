@@ -13,6 +13,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
           script: |
             cd /var/www/app-gl-fe-dev
             git pull origin main
