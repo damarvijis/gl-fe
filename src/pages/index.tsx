@@ -23,6 +23,9 @@ export default function Home() {
           <p>
             with Damar Jati Sribantolo
           </p>
+          <p>
+            2024
+          </p>
         </div>
 
       </main>
