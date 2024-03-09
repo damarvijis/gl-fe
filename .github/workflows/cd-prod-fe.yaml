@@ -1,0 +1,28 @@
+name: CD - Deploy
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch: {}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd /var/www/app-gl-fe
+            git pull origin main
+            npm ci
+            npm run build
+            pm2 restart app-gl-fe ||  pm2 start npm --name app-gl-fe -- start -- -p -- 10000
+            pm2 save
+  
+  
+      
+
+        
+  
